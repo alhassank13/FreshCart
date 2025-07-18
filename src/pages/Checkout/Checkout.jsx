@@ -69,7 +69,7 @@ export default function Checkout() {
   async function payOnLine(values) {
     try {
       let { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=https://fresh-cart-seven-tau.vercel.app/allorders`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=https://fresh-cart-seven-tau.vercel.app`,
         {
           shippingAddress: values,
         },
