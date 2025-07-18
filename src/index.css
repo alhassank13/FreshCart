@@ -1,0 +1,167 @@
+/* ... your existing imports and theme ... */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap"); */
+@import "tailwindcss";
+@import '@fontsource-variable/outfit';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-tomato: tomato;
+  --color-mainLight: #F0F3F2;
+  --color-primary: #00CC74;
+  --color-darkPrimary: #01854C;
+
+  --font-primary: "Fondamento", cursive;
+
+  --font-hamozo: "Bitcount Grid Double", system-ui;
+  --text-abdo: 50px;
+
+  --text-heading: 24px;
+  --text-body: 14px;
+
+  --animate-nasser: loading 1s linear infinite;
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@utility tamatem-* {
+  background-color: rgba(255, 99, 71, calc(--value(integer) * 1%));
+}
+
+@utility container {
+  margin: 0 auto;
+  max-width: 1200px;
+  /* Added max-width for better control */
+  padding: 0 1rem;
+  /* Added horizontal padding */
+}
+
+@layer components {
+  .link-hover {
+    @apply hover:text-blue-600 hover:font-extrabold;
+  }
+
+  .afterEffect {
+    @apply after:absolute after:left-1/2 after:-translate-x-1/2 hover:after:w-full after:w-0 hover:after:transition-all hover:after:duration-300 hover:after:h-1 hover:after:bg-primary after:bottom-0 pb-1;
+  }
+
+  /* New afterEffect for mobile links (optional, for different styling) */
+  .afterEffect-mobile {
+    @apply after:absolute after:left-1/2 after:-translate-x-1/2 hover:after:w-full after:w-0 hover:after:transition-all hover:after:duration-300 hover:after:h-0.5 hover:after:bg-primary after:bottom-0 pb-1;
+  }
+
+  .btn {
+    @apply rounded-2xl transition-all px-2.5 py-2 bg-gray-300 hover:bg-gray-500 text-xl hover:text-white;
+  }
+}
+
+body {
+  font-family: 'Outfit Variable', sans-serif;
+}
+
+
+
+
+/* Start loading */
+.loader {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  top: -24px;
+  animation: animloader 4s ease infinite;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  animation: animloader2 2s ease infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 0 24px white, 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 0 24px white, 24px 24px white, 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+  }
+
+  37% {
+    box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px white;
+  }
+
+  62% {
+    box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px white, 24px 48px white, 0px 48px white;
+  }
+
+  75% {
+    box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px white, 0px 48px white;
+  }
+
+  87% {
+    box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px white;
+  }
+
+  100% {
+    box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes animloader2 {
+  0% {
+    transform: translate(0, 0) rotateX(0) rotateY(0);
+  }
+
+  25% {
+    transform: translate(100%, 0) rotateX(0) rotateY(180deg);
+  }
+
+  50% {
+    transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg);
+  }
+
+  75% {
+    transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotateX(0) rotateY(360deg);
+  }
+}
+
+
