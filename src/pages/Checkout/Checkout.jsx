@@ -81,9 +81,9 @@ export default function Checkout() {
       );
       // console.log(data);
       if (data.status === "success") {
-        navegate("/allorders");
-        toast.success("Your Order has been Placed Successfully 🎉🎉🎉");
-        // window.location.href = data.session.url;
+        window.location.href = data.session.url;
+        // navegate("/allorders");
+        // toast.success("Your Order has been Placed Successfully 🎉🎉🎉");
       }
     } catch (err) {
       console.log(err);
