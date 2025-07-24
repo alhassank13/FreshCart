@@ -66,10 +66,38 @@ export default function Checkout() {
     validationSchema,
   });
 
+  // async function payOnLine(values) {
+  //   try {
+  //     let { data } = await axios.post(
+  //       `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=https://fresh-cart-seven-tau.vercel.app`,
+  //       {
+  //         shippingAddress: values,
+  //       },
+  //       {
+  //         headers: {
+  //           token: localStorage.getItem("userToken"),
+  //         },
+  //       }
+  //     );
+  //     // console.log(data);
+  //     if (data.status === "success") {
+  //       window.location.href = data.session.url;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   async function payOnLine(values) {
+    // This is the crucial part that needs to be dynamic
+    // For local development, this should resolve to 'http://localhost:5173'
+    // For Vercel deployment, this should resolve to 'https://fresh-cart-seven-tau.vercel.app'
+    const frontendBaseUrl = import.meta.env.VITE_APP_FRONTEND_URL; // Or process.env.REACT_APP_FRONTEND_URL for CRA
+
     try {
       let { data } = await axios.post(
-        `https://fresh-cart-seven-tau.vercel.app/${cart.cartId}?url=https://fresh-cart-seven-tau.vercel.app`,
+        // Ensure this URL parameter is correct for the current environment
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=${frontendBaseUrl}`,
         {
           shippingAddress: values,
         },
@@ -79,12 +107,15 @@ export default function Checkout() {
           },
         }
       );
-      // console.log(data);
-      if (data.status === "success") {
+
+      if (data.status === "success" && data.session && data.session.url) {
         window.location.href = data.session.url;
+      } else {
+        // ... error handling
       }
     } catch (err) {
       console.log(err);
+      // ... error handling
     }
   }
 
