@@ -82,7 +82,7 @@ function App() {
           path: "/categories/:id",
           element: (
             <ProtetedRoutes>
-              <SpecificCategory/>
+              <SpecificCategory />
               <SubCategories />
             </ProtetedRoutes>
           ),
